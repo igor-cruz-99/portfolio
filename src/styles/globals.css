@@ -127,12 +127,18 @@ html body {
     animation: ring-spin 2.6s linear infinite;
     box-shadow: 0 10px 30px -12px rgb(255 106 26 / .6);
   }
+  /* linha laranja passou pela experiência: logo colorida com borda sunset (sem girar) */
+  .is-reached:not(:hover) .logo-ring:not(.is-live) {
+    background: linear-gradient(135deg, var(--color-sun-1), var(--color-sun-3) 60%, var(--color-sun-4));
+    box-shadow: 0 10px 28px -14px rgb(255 106 26 / .6);
+  }
   .group\/job:hover .logo-ring { transform: translateY(-3px) rotate(-4deg); }
   .group\/job:hover .logo-ring img { transform: scale(1.04); }
   /* com mouse: logos em P&B até a experiência ser apontada; no toque ficam coloridas */
   @media (hover: hover) {
     .logo-ring:not(.is-live) img { filter: grayscale(1) brightness(.75); }
     .group\/job:hover .logo-ring img { filter: none; }
+    .is-reached .logo-ring img { filter: none; }
   }
 }
 

@@ -4,11 +4,14 @@ import { CompanyLogos } from '@/components/ui/CompanyLogos'
 
 export function JobItem({ job }: { job: Job }) {
   return (
-    <article className="group/job relative grid gap-2 py-7 pl-[30px] md:grid-cols-[170px_minmax(0,1fr)] md:gap-x-11 md:gap-y-0 md:pl-0">
+    <article data-job className="group/job relative grid gap-2 py-7 pl-[30px] md:grid-cols-[170px_minmax(0,1fr)] md:gap-x-11 md:gap-y-0 md:pl-0">
       <span
+        data-dot
         aria-hidden="true"
         className={cn(
-          'absolute top-8 left-0 z-10 size-[11px] rounded-full border md:top-9 md:left-[165px]',
+          'absolute top-8 left-0 z-10 size-[11px] rounded-full border transition-[background-color,border-color,box-shadow] duration-500 md:top-9 md:left-[165px]',
+          // acende quando a linha laranja passa (classe is-reached, posta pelo scroll)
+          'group-[.is-reached]/job:border-sun-2 group-[.is-reached]/job:bg-sun-3 group-[.is-reached]/job:shadow-[0_0_0_6px_rgb(255_106_26/.15)]',
           job.current ? 'border-sun-2 bg-sun-3 shadow-[0_0_0_6px_rgb(255_106_26/.15)]' : 'border-fg-mute bg-ink',
         )}
       />

@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef } from 'react'
 import { jobs, phaseLabels } from '@/data/resume'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { gsap } from '@/lib/gsap'
+import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { CareerBar } from './CareerBar'
 import { JobItem } from './JobItem'
@@ -11,7 +11,13 @@ export function Experience() {
   const reduced = useReducedMotion()
 
   useEffect(() => {
-    if (reduced || !timeline.current) return
+    if (!timeline.current) return
+    const items = timeline.current.querySelectorAll<HTMLElement>('[data-job]')
+    // movimento reduzido: sem linha animada, todas as experiências já aparecem acesas
+    if (reduced) {
+      items.forEach((el) => el.classList.add('is-reached'))
+      return () => items.forEach((el) => el.classList.remove('is-reached'))
+    }
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '[data-progress]',
@@ -22,6 +28,15 @@ export function Experience() {
           scrollTrigger: { trigger: timeline.current, start: 'top 70%', end: 'bottom 70%', scrub: true },
         },
       )
+      // a ponta da linha fica sempre a 70% da tela: quando ela passa pelo círculo,
+      // o círculo acende e a logo ganha cor (e apaga de novo ao rolar para cima)
+      items.forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el.querySelector('[data-dot]') ?? el,
+          start: 'center 70%',
+          toggleClass: { targets: el, className: 'is-reached' },
+        })
+      })
     }, timeline)
     return () => ctx.revert()
   }, [reduced])
@@ -30,14 +45,8 @@ export function Experience() {
     <section id="experiencia" className="pb-[clamp(80px,11vw,150px)]">
       <div className="wrap">
         <SectionHeader
-          eyebrow="Experiência profissional"
-          title={
-            <>
-              Do balcão
-              <br />
-              ao banco de dados.
-            </>
-          }
+          eyebrow="Resumo profissional"
+          title="Experiência profissional"
         />
         <CareerBar />
 
