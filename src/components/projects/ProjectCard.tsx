@@ -14,20 +14,18 @@ export function ProjectCard({ project, onOpen }: Props) {
       type="button"
       onClick={onOpen}
       aria-label={`Abrir ${project.title}${multi ? `, ${pages.length} páginas` : fullpage ? ', página completa' : ''}`}
-      className={cn(
-        'group relative flex w-full cursor-pointer flex-col text-left transition duration-350 hover:-translate-y-1',
-        // folhas empilhadas atrás do cartão indicam que há mais de uma tela
-        multi && 'mt-3',
-      )}
+      // h-full: todos os cartões da linha ficam com a altura do maior.
+      // pt-3 em todos: espaço das folhas empilhadas, para os topos ficarem alinhados.
+      className="group relative flex h-full w-full cursor-pointer flex-col pt-3 text-left transition duration-350 hover:-translate-y-1"
     >
       {multi && (
         <>
-          <span aria-hidden="true" className="absolute inset-x-6 -top-3 h-6 rounded-t-[18px] border border-b-0 border-line bg-ink-3/60 transition-transform duration-350 group-hover:-translate-y-1" />
-          <span aria-hidden="true" className="absolute inset-x-3 -top-1.5 h-6 rounded-t-[20px] border border-b-0 border-line bg-ink-3 transition-transform duration-350 group-hover:-translate-y-0.5" />
+          <span aria-hidden="true" className="absolute inset-x-6 top-0 h-6 rounded-t-[18px] border border-b-0 border-line bg-ink-3/60 transition-transform duration-350 group-hover:-translate-y-1" />
+          <span aria-hidden="true" className="absolute inset-x-3 top-1.5 h-6 rounded-t-[20px] border border-b-0 border-line bg-ink-3 transition-transform duration-350 group-hover:-translate-y-0.5" />
         </>
       )}
 
-      <div className="relative flex w-full flex-col overflow-hidden rounded-[22px] border border-line bg-ink-2 transition duration-350 group-hover:border-sun-2/60 group-hover:shadow-[0_24px_60px_-30px_rgb(255_106_26/.55)]">
+      <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[22px] border border-line bg-ink-2 transition duration-350 group-hover:border-sun-2/60 group-hover:shadow-[0_24px_60px_-30px_rgb(255_106_26/.55)]">
         {/* Moldura de navegador; num print de página inteira, o hover rola até o rodapé */}
         <div className="flex items-center gap-1.5 border-b border-line px-4 py-3" aria-hidden="true">
           <i className="size-2 rounded-full bg-sun-3" />
@@ -69,7 +67,7 @@ export function ProjectCard({ project, onOpen }: Props) {
             </span>
           )}
         </div>
-        <div className="flex items-start justify-between gap-4 p-5">
+        <div className="flex flex-1 items-start justify-between gap-4 p-5">
           <div className="min-w-0">
             <h3 className="font-title tracking-[.03em] text-[26px] leading-tight font-bold">{project.title}</h3>
             <p className="mt-1.5 text-sm text-fg-dim">{project.subtitle}</p>
