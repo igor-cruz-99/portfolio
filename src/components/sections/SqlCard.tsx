@@ -22,7 +22,7 @@ export function SqlCard() {
           {'\n'}<K>FROM</K>{'   '}<N>profissionais</N>
           {'\n'}<K>WHERE</K>{'  '}<N>cidade</N>{'       '}= <S>'Brasília-DF'</S>
           {'\n  '}<K>AND</K>{'  '}<N>formacao</N>{'     '}<K>LIKE</K> <S>'%Dados e BI%'</S>
-          {'\n  '}<K>AND</K>{'  '}<N>automacao</N>{'    '}<K>IN</K> (<S>'Make'</S>, <S>'N8N'</S>, <S>'Zapier'</S>)
+          {'\n  '}<K>AND</K>{'  '}<N>automacao</N>{'    '}<K>IN</K> (<S>'Make'</S>, <S>'N8N'</S>, <S>'AI-AGENT'</S>)
           {'\n  '}<K>AND</K>{'  '}<N>disponivel</N>{'   '}= <K>TRUE</K>;
           {'\n\n'}<C>-- 1 row returned: Igor Sousa Cruz</C>
         </pre>
