@@ -15,6 +15,7 @@ import aplPharus from '@/assets/projects/apl-pharus.webp'
 // nomes de leads borrados de propósito: dados de clientes
 import sessaoEstrategica from '@/assets/projects/sessao-estrategica.webp'
 import tecseguros from '@/assets/projects/tecseguros.webp'
+import dolceRomana from '@/assets/projects/dolce-romana.webp'
 
 const wepPages: ProjectPage[] = [
   { label: 'Padrão', image: wepPadrao, width: 1665, height: 4064, kind: 'fullpage' },
@@ -175,6 +176,16 @@ export const projectCategories: ProjectCategory[] = [
         height: 2225,
         kind: 'fullpage',
         tags: ['Conceito', 'Landing page'],
+      },
+      {
+        id: 'dolce-romana',
+        title: 'Dolce Romana',
+        subtitle: 'Landing page de confeitaria artesanal, com sabores, história da marca e encomenda pelo WhatsApp',
+        image: dolceRomana,
+        width: 1440,
+        height: 5517,
+        kind: 'fullpage',
+        tags: ['Landing page', 'Página completa'],
       },
     ],
   },
